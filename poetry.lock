@@ -670,23 +670,23 @@ dev = ["PyTest", "PyTest-Cov", "bump2version (<1)", "sphinx (<2)", "tox"]
 
 [[package]]
 name = "duckduckgo-search"
-version = "3.9.4"
+version = "3.9.11"
 description = "Search for words, documents, images, news, maps and text translation using the DuckDuckGo.com search engine."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "duckduckgo_search-3.9.4-py3-none-any.whl", hash = "sha256:06004982952feb2c65927840ebf3d186498bce2390f208be7726f5f82675f3db"},
-    {file = "duckduckgo_search-3.9.4.tar.gz", hash = "sha256:ce140bf005ff147b5f7f02ef893e575527487db8f689dfccc86c7d4519b95a9b"},
+    {file = "duckduckgo_search-3.9.11-py3-none-any.whl", hash = "sha256:3636df4c5eec383c1c02f89c9693b6c5bbaeda38952e467a2fa930132f632ed4"},
+    {file = "duckduckgo_search-3.9.11.tar.gz", hash = "sha256:4d07a02647da58f1e46e35f11719265f0ce06eed60e2c9c2b00b1105b9084d07"},
 ]
 
 [package.dependencies]
 aiofiles = ">=23.2.1"
 click = ">=8.1.7"
-httpx = {version = ">=0.25.0", extras = ["brotli", "http2", "socks"]}
+httpx = {version = ">=0.25.1", extras = ["brotli", "http2", "socks"]}
 lxml = ">=4.9.3"
 
 [package.extras]
-dev = ["black (>=23.9.1)", "isort (>=5.12.0)", "pytest (>=7.4.2)", "pytest-asyncio (>=0.21.1)", "ruff (>=0.0.291)"]
+dev = ["pytest (>=7.4.2)", "pytest-asyncio (>=0.21.1)", "ruff (>=0.1.6)"]
 
 [[package]]
 name = "faiss-cpu"
