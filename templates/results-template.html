@@ -48,6 +48,7 @@
 
         .banner {
             width: 100%;
+            height: auto;
         }
 
         .image-banner h1,
@@ -81,7 +82,7 @@
 </head>
 
 <body>
-    <img src="https://healthcheck.onepointltd.ai/public/images/Hero_Image_with_Logo_and_Titles.jpg" class="banner"/>
+    <img src="file:///home/ubuntu/projects/data-wellness-companion/ui/banner/Hero_Image_with_Logo_and_Titles.jpg" class="banner"/>
     <div class="container">
         
         <p class="date-produced">Produced on: {{timestamp}}</p>
@@ -97,6 +98,14 @@
         <h2 class="recommendations">Recommendations and suggested courses of action</h2>
         <ul>
             {{advices}}
+        </ul>
+        <h2 class="recommendations">What to avoid</h2>
+        <ul>
+            {{avoids}}
+        </ul>
+        <h2 class="recommendations">Potential positive outcomes</h2>
+        <ul>
+            {{positive_outcomes}}
         </ul>
         <h2 class="personalOffer">A personal offer for you</h2>
         <p>We are offering a free results interpretation call to talk through the Companion's recommendations and suggested courses of action with a real human expert. 

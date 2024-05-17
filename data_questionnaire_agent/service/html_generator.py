@@ -3,6 +3,9 @@ from datetime import datetime
 
 from data_questionnaire_agent.model.application_schema import Questionnaire
 from data_questionnaire_agent.model.openai_schema import ConditionalAdvice
+from data_questionnaire_agent.service.report_enhancement_service import (
+    replace_bold_markdown,
+)
 
 import jinja2
 import pdfkit
@@ -15,7 +18,9 @@ def generate_html(questionnaire: Questionnaire, advices: ConditionalAdvice) -> s
     timestamp = datetime.today().strftime("%A, %b %d %Y")
     context = {
         "questionnaire": questionnaire.to_html(),
-        "advices": advices.to_html(),
+        "advices": replace_bold_markdown(advices.to_advice_html()),
+        "avoids": replace_bold_markdown(advices.to_avoid_html()),
+        "positive_outcomes": replace_bold_markdown(advices.positive_outcomes_html()),
         "timestamp": timestamp,
     }
     template_loader = jinja2.FileSystemLoader(cfg.template_location)
@@ -28,9 +33,11 @@ def generate_pdf_from(questionnaire: Questionnaire, advices: ConditionalAdvice) 
     if questionnaire is None:
         return None
     html = generate_html(questionnaire, advices)
+    logger.info("PDF html: %s", html)
     file_name = (
         cfg.pdf_folder / f"Advice from the {cfg.product_title}_{generate_iso()}.pdf"
     )
+    logger.info("PDF to be created file name: %s", file_name)
     config = pdfkit.configuration(wkhtmltopdf=cfg.wkhtmltopdf_binary.as_posix())
     pdfkit.from_string(html, file_name, configuration=config)
     logger.info("Created PDF: %s", file_name)

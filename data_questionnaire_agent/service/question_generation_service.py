@@ -54,7 +54,7 @@ if __name__ == "__main__":
         provide_data_quality_ops,
     )
     from data_questionnaire_agent.log_init import logger
-    from langchain.callbacks import get_openai_callback
+    from langchain_community.callbacks import get_openai_callback
     import asyncio
 
     questionnaire = create_questionnaire_2_questions()
