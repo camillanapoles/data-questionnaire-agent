@@ -19,10 +19,10 @@
   resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.5.7.tgz#fadd9ecdda384509d000ba2ab588a894b41b02f3"
   integrity sha512-F8brek8VcR3CLgcuKyXbb8k8y/KRwqO/yEV5dTUW6OZ0fGxxa+0RnaaY1UbHlCVF1Cnu+/IsMDsmsj9o1RCP5A==
 
-"@vercel/ncc@0.24.0":
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.24.0.tgz#a2e8783a185caa99b5d8961a57dfc9665de16296"
-  integrity sha512-crqItMcIwCkvdXY/V3/TzrHJQx6nbIaRqE1cOopJhgGX6izvNov40SmD//nS5flfEvdK54YGjwVVq+zG6crjOg==
+"@vercel/ncc@0.38.1":
+  version "0.38.1"
+  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.38.1.tgz#13f08738111e1d9e8a22fd6141f3590e54d9a60e"
+  integrity sha512-IBBb+iI2NLu4VQn3Vwldyi2QwaXt5+hTyh58ggAMoCGE6DJmPvwL3KPBWcJl1m9LYPChBLE980Jw+CS4Wokqxw==
 
 cross-spawn@^6.0.0:
   version "6.0.5"
