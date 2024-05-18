@@ -14,10 +14,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.9.tgz#02d013de7058cea16d36168ef2fc653464cfbad4"
   integrity sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==
 
-"@vercel/build-utils@5.5.7":
-  version "5.5.7"
-  resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.5.7.tgz#fadd9ecdda384509d000ba2ab588a894b41b02f3"
-  integrity sha512-F8brek8VcR3CLgcuKyXbb8k8y/KRwqO/yEV5dTUW6OZ0fGxxa+0RnaaY1UbHlCVF1Cnu+/IsMDsmsj9o1RCP5A==
+"@vercel/build-utils@5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@vercel/build-utils/-/build-utils-5.9.0.tgz#54b91e5b369c852d4a0d1bcba98d4c352d290643"
+  integrity sha512-LJRhd/ritLGHH+YvZ+DC7AW3Jr87UZHFHz2h2ENULDZ8qAo5LJH+y+Cg11uxfXkhQKK2f/AZQJXyKVyu1BBwdQ==
 
 "@vercel/ncc@0.38.1":
   version "0.38.1"

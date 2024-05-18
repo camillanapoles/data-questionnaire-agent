@@ -12,7 +12,7 @@
         "directory": "packages/python"
     },
     "dependencies": {
-        "@vercel/build-utils": "5.5.7",
+        "@vercel/build-utils": "5.9.0",
         "@vercel/ncc": "0.38.1",
         "execa": "^1.0.0"
     },
