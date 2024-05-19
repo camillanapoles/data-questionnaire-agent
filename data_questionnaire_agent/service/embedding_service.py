@@ -3,11 +3,15 @@ from typing import TypeVar, List
 from pathlib import Path
 
 from langchain.schema import Document
-from langchain.document_loaders import TextLoader
+# from langchain.document_loaders import TextLoader
+from langchain_community.document_loaders import TextLoader
 
-from langchain.vectorstores import FAISS
+# from langchain.vectorstores import FAISS
+# from langchain_community.vectorstores import FAISS
+# from langchain.vectorstores.faiss import FAISS
+# from langchain_community.vectorstores import FAISS
+from langchain_community.embeddings.openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain.vectorstores.faiss import FAISS
 
 from data_questionnaire_agent.log_init import logger
 from data_questionnaire_agent.config import cfg
@@ -29,6 +33,7 @@ def load_text(path: Path) -> List[Document]:
     List[Document]: Returns a list of documents
     """
     assert path.exists()
+    # assert path.exists(), f"Path {path} does not exist"
     all_pages = []
     for text_file in path.glob("*.txt"):
         loader = TextLoader(text_file.as_posix(), encoding="utf-8")

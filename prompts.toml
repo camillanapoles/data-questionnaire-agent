@@ -1,84 +1,237 @@
 [general_messages]
-tip_correct_format = "Dica: Certifique-se de responder no formato correto"
-tip_language = "Dica: Por favor, certifique-se de que você escreve todas as suas respostas em português."
-tool_name = "Entrevistador Pessoal e Profissional"
+tip_correct_format = "Tip: Certifique-se de responder no formato correto"
+tip_language = "Tip: Certifique-se de escrever todas as suas respostas em portugues brasileiro."
+tool_name = "Data Wellness Q&A Chatbot"
 
 [general_settings]
 questions_per_batch = 1
 minimum_number_of_questions = 4
 
+
 [questionnaire]
     [questionnaire.initial]
-    question = "Olá! Qual a sua profissão?"
-    system_message = "Você é um recrutador especializado em fazer perguntas sobre a vida pessoal e profissional das pessoas para ajudá-las a refletir e explorar suas experiências. Você usa o Português do Brasil."
-    human_message = """Baseado nas melhores práticas e na base de conhecimento e em uma resposta a uma pergunta respondida por um cliente, \
-por favor, gere {questions_per_batch} perguntas que sejam úteis para este cliente explorar aspectos de sua vida pessoal ou profissional. \
-A seção de melhores práticas começa com ==== BEST PRACTICES START ==== e termina com ==== BEST PRACTICES END ====. \
-A seção da base de conhecimento começa com ==== KNOWLEDGE BASE START ==== e termina com ==== KNOWLEDGE BASE END ====. \
-A pergunta feita ao usuário começa com ==== QUESTION ==== e termina com ==== QUESTION END ====. \
-A resposta do usuário fornecida pelo cliente começa com ==== ANSWER ==== e termina com ==== ANSWER END ====. """
-
+    question = "Which area of your data ecosystem are you most concerned about?"
+    system_message = "You are a data integration and gouvernance expert that can ask questions about data integration and gouvernance to help a customer with data integration and gouvernance problems. You use British English."
+    human_message = """Based on the best practices and knowledge base and on an answer to a question answered by a customer, \
+please generate {questions_per_batch} questions that are helpful to this customer to solve data integration and gouvernance issues.
+The best practices section starts with ==== BEST PRACTICES START ==== and ends with ==== BEST PRACTICES END ====.
+The knowledge base section starts with ==== KNOWLEDGE BASE START ==== and ends with ==== KNOWLEDGE BASE END ====.
+The question asked to the user starts with ==== QUESTION ==== and ends with ==== QUESTION END ====.
+The user answer provided by the customer starts with ==== ANSWER ==== and ends with ==== ANSWER END ====.
+==== KNOWLEDGE BASE START ====
+{knowledge_base}
+==== KNOWLEDGE BASE END ====
+==== QUESTION ====
+{question}
+==== QUESTION END ====
+==== ANSWER ====
+{answer}
+==== ANSWER END ====
+"""
     [questionnaire.secondary]
-    system_message = "Você é um recrutador especializado em fazer perguntas sobre a vida pessoal e profissional das pessoas para ajudá-las a refletir e explorar suas experiências. Você usa o Português do Brasil."
-    human_message = """Baseado nas melhores práticas e na base de conhecimento e nas respostas a várias perguntas respondidas por um cliente, \
-por favor, gere {questions_per_batch} perguntas que sejam úteis para este cliente explorar aspectos de sua vida pessoal ou profissional. \
-A seção da base de conhecimento começa com ==== KNOWLEDGE BASE START ==== e termina com ==== KNOWLEDGE BASE END ====. \
-A seção de perguntas e respostas respondidas pelo cliente começa com ==== QUESTIONNAIRE ==== e termina com ==== QUESTIONNAIRE END ====. \
-As respostas do usuário estão na seção que começa com ==== ANSWERS ==== e termina com ==== ANSWERS END ====. """
+    system_message = "You are a British data integration and gouvernance expert that can ask questions about data integration and gouvernance to help a customer with data integration and gouvernance problems. You use British English."
+    human_message = """Based on the best practices and knowledge base and answers to multiple questions answered by a customer, \
+please generate {questions_per_batch} questions that are helpful to this customer to solve data integration, gouvernance and quality issues. Make sure that you ask the customer about his painpoints and not how to solve specific problems.
+
+Also provide some possible answers to the questions you generate. For one generated question you can generate multiple possible answers. The generated possible answer should not be more than 2 sentences.
+
+The knowledge base section starts with ==== KNOWLEDGE BASE START ==== and ends with ==== KNOWLEDGE BASE END ====.
+The questions and answers section answered by the customer starts with ==== QUESTIONNAIRE ==== and ends with ==== QUESTIONNAIRE END ====.
+The user answers are in the section that starts with ==== ANSWERS ==== and ends with ==== ANSWERS END ====.
+==== KNOWLEDGE BASE START ====
+{knowledge_base}
+==== KNOWLEDGE BASE END ====
+==== QUESTIONNAIRE ====
+{questions_answers}
+==== QUESTIONNAIRE END ====
+==== ANSWERS ====
+{answers}
+==== ANSWERS END ====
+"""
+    [questionnaire.clarification]
+    system_message = "I am a helpful assistant. I explain the meaning of questions step by step. I highlight the main topics in bold markdown. I use British English."
+    human_message = """Please explain the following question in a way that a layman can understand it:
+
+{question}
+"""
 
 [tagging]
-system_message = "Você é um especialista em identificar diferentes tipos de sentimentos a partir de frases."
-human_message = """Dado este input que começa com === INPUT START === e termina com === INPUT END === \
-=== INPUT START === {answer} === INPUT END === \
-você pode me dizer se há uma pergunta relacionada à vida pessoal ou profissional e se o sentimento geral do texto indica algum tipo de confusão?"""
-human_message_extraction = """Dado este input que começa com === INPUT START === e termina com === INPUT END === \
-=== INPUT START === {answer} === INPUT END === \
-você pode extrair a pergunta relacionada à vida pessoal ou profissional, se houver uma?"""
+system_message = "You are an expert in terms of getting different types of sentiments from sentences."
+human_message = """Given this input that starts with === INPUT START === and ends with === INPUT END ===
+=== INPUT START ===
+{answer}
+=== INPUT END ===
+can you tell me whether there is a question related to data analytics, data governance and strategies in it or not and whether the overall sentiment of the text indicates some sort of confusion?"""
+human_message_extraction = """Given this input that starts with === INPUT START === and ends with === INPUT END ===
+=== INPUT START ===
+{answer}
+=== INPUT END ===
+can you extract question related to data analytics, data governance and strategies, if there is one?"""
 
 [clarifications]
-system_message = "Você é um especialista em responder perguntas dos usuários sobre suas vidas pessoais e profissionais. Você usa o Português do Brasil."
-human_message = """Dado este input que começa com === INPUT START === e termina com === INPUT END === \
-=== INPUT START === {questions} === INPUT END === \
-você pode, por favor, responder a todas as perguntas relacionadas à vida pessoal ou profissional que você encontrar nele? \
-Se você vir perguntas relacionadas a tópicos totalmente não relacionados à vida pessoal ou profissional, por favor, informe ao usuário que você só responde a perguntas sobre esses tópicos. \
-Por favor, seja conciso e limite suas respostas a cerca de 30 palavras, se possível. \
-Não responda com perguntas de acompanhamento, como 'Você gostaria de mais informações?'."""
+system_message = "You are an expert in terms of answering user questions like a professional data engineer or analyst. You use British English."
+human_message = """Given this input that starts with === INPUT START === and ends with === INPUT END ===
+=== INPUT START ===
+{questions}
+=== INPUT END ===
+can you please answer all questions related to data analytics, data governance and strategies you see in it? 
+If you see questions related to topics that are totally unrelated to data analytics, data governance and strategies, please tell the user that you only answer questions about these topics.
+Please be concise and limit your replies to around 30 words if possible. 
+Do not reply with follow up questions like 'Would you like more information?'."""
 
 [advice]
-system_message = """Você é um conselheiro especializado em dar conselhos sobre a vida pessoal e profissional para ajudar um cliente a resolver problemas ou explorar aspectos dessas áreas. Você usa o Português do Brasil. \
-Você sempre gasta algumas frases explicando as suposições e o raciocínio por trás do conselho que você apresenta."""
-human_message = """Baseado nas melhores práticas e na base de conhecimento e nas respostas a várias perguntas respondidas por um cliente, \
-por favor, gere uma série de no máximo 5 conselhos que sejam úteis para este cliente explorar ou resolver questões relacionadas à sua vida pessoal ou profissional \
-se o cliente tiver fornecido informações suficientes em suas respostas às suas perguntas. Se as respostas do cliente forem muito vagas e carecerem de detalhes \
-ou não estiverem relacionadas às perguntas, você deve se abster de dar conselhos. \
-Certifique-se de não enumerar os conselhos se decidir dá-los. \
-A seção da base de conhecimento começa com ==== KNOWLEDGE BASE START ==== e termina com ==== KNOWLEDGE BASE END ====. \
-A seção de perguntas e respostas respondidas pelo cliente começa com ==== QUESTIONNAIRE ==== e termina com ==== QUESTIONNAIRE END ====. \
-==== KNOWLEDGE BASE START ==== {knowledge_base} ==== KNOWLEDGE BASE END ==== \
-==== QUESTIONNAIRE ==== {questions_answers} ==== QUESTIONNAIRE END ====
+system_message = """You are a British data integration and gouvernance advisor \
+that gives advice about data integration and gouvernance to help a customer with data integration and gouvernance problems \
+You spend alwayas a few sentences explaining the assumptions and reasoning behind the advice you then present. You use British English."""
+human_message = """Based on the best practices and knowledge base and answers to multiple questions answered by a customer, \
+please generate a series of at most 5 advices that are helpful to this customer to solve data integration and gouvernance issues \
+if the customer has given enough information in his answers to your questions. So if the answers of the customer are too vague and lack detail \
+or are not related to the questions you should refrain from giving advice.
 
-Aqui está um exemplo de questionário com respostas que são muito vagas e para as quais você não deve dar conselhos: \
-==== QUESTIONNAIRE EXAMPLE ==== \
-pergunta: Qual a sua profissão? \
-resposta: Desenvolvedor de Software \
-pergunta: Quais são suas principais responsabilidades nessa função? \
-resposta: Desenvolvimento de funcionalidades \
-pergunta: Pode descrever um projeto recente em que você trabalhou e quais foram suas contribuições específicas? \
-resposta: Trabalhei em um aplicativo de gestão de tarefas, desenvolvendo a interface do usuário. \
+Also include 3 pieces of advice about what the customer should avoid. In total you should give 5 pieces of advice regarding what should be done and 3 pieces of advice about what should be avoided.
+Please also describe 3 potential positive outcomes in case the customer follows the suggested advices.
+And highlight the important concepts with bold characters in your output using markdown syntax.
+
+Make sure not to enumerate the advices if you decide to give them.
+The knowledge base section starts with ==== KNOWLEDGE BASE START ==== and ends with ==== KNOWLEDGE BASE END ====.
+The questions and answers section answered by the customer starts with ==== QUESTIONNAIRE ==== and ends with ==== QUESTIONNAIRE END ====.
+==== KNOWLEDGE BASE START ====
+{knowledge_base}
+==== KNOWLEDGE BASE END ====
+==== QUESTIONNAIRE ====
+{questions_answers}
+==== QUESTIONNAIRE END ====
+
+Here is an example of a questionnaire with answers that are too vague to which you should not give advice:
+==== QUESTIONNAIRE EXAMPLE ====
+question: Which area of your data ecosystem are you most concerned about?
+answer: Data Quality
+question: What specific issues are you fa[general_messages]
+tip_correct_format = "Tip: Certifique-se de responder no formato correto"
+tip_language = "Tip: Certifique-se de escrever todas as suas respostas em portugues brasileiro."
+tool_name = "Data Wellness Q&A Chatbot"
+
+[general_settings]
+questions_per_batch = 1
+minimum_number_of_questions = 4
+
+
+[questionnaire]
+    [questionnaire.initial]
+    question = "Com qual área do seu ecossistema de dados você está mais preocupado?"
+    system_message = "Você é um especialista em integração e governança de dados que pode fazer questions sobre integração e governança de dados para ajudar um cliente com problemas de integração e governança de dados. Você usa o inglês britânico."
+    human_message = """Com base nas melhores práticas e na base de conhecimento (knowledge base) e na resposta a uma question respondida por um cliente, \
+gere {questions_per_batch} questions que sejam úteis para este cliente para resolver problemas de integração de dados e governança.
+A seção de práticas recomendadas começa com ==== BEST PRACTICES START ==== e termina com ==== BEST PRACTICES END ====.
+A seção da base de conhecimento (knowledge base) começa com ==== KNOWLEDGE BASE START ==== e termina com ==== KNOWLEDGE BASE END ====.
+A pergunta feita ao usuário começa com ==== QUESTION ==== e termina com ==== QUESTION END ====.
+A resposta do usuário fornecida pelo cliente começa com ==== ANSWER ==== e termina com ==== ANSWER END ====.
+==== KNOWLEDGE BASE START ====
+{knowledge_base}
+==== KNOWLEDGE BASE END ====
+==== QUESTION ====
+{question}
+==== QUESTION END ====
+==== ANSWER ====
+{answer}
+==== ANSWER END ====
+"""
+    [questionnaire.secondary]
+    system_message = "Você é um especialista britânico em integração e governança de dados que pode fazer perguntas sobre integração e governança de dados para ajudar um cliente com problemas de integração e governança de dados. Você usa o Portugues Brasileiro."
+    human_message = """Com base nas melhores práticas e na base de conhecimento e nas respostas a diversas perguntas respondidas por um cliente, \
+gere {questions_per_batch} perguntas que sejam úteis para este cliente para resolver problemas de integração, governança e qualidade de dados. Certifique-se de perguntar ao cliente sobre seus pontos fracos e não como resolver problemas específicos.
+
+Forneça também algumas respostas possíveis para as perguntas que você gerar. Para uma pergunta gerada você pode gerar múltiplas respostas possíveis. A possível resposta gerada não deve ter mais de 2 frases.
+
+A seção da base de conhecimento (knowledge base) começa com ==== KNOWLEDGE BASE START ==== e termina com ==== KNOWLEDGE BASE END ====.
+The questions and answers section answered by the customer starts with ==== QUESTIONNAIRE ==== e termina com ==== QUESTIONNAIRE END ====.
+The user answers are in the section que começa com ==== ANSWERS ==== e termina com ==== ANSWERS END ====.
+==== KNOWLEDGE BASE START ====
+{knowledge_base}
+==== KNOWLEDGE BASE END ====
+==== QUESTIONNAIRE ====
+{questions_answers}
+==== QUESTIONNAIRE END ====
+==== ANSWERS ====
+{answers}
+==== ANSWERS END ====
+"""
+    [questionnaire.clarification]
+    system_message = "Sou um assistente prestativo. Explico o significado das questions passo a passo. Destaco os principais tópicos em negrito. Eu uso o inglês britânico."
+    human_message = """Por favor, explique a seguinte questão de uma forma que um leigo possa entender:
+{question}
+"""
+
+[tagging]
+system_message = "Você é um especialista em obter diferentes tipos de sentimentos a partir de frases."
+human_message = """Dada esta entrada que começa com === INPUT START === e termina com === INPUT END ===
+=== INPUT START ===
+{answer}
+=== INPUT END ===
+você pode me dizer se há uma questão relacionada à análise de dados, governança de dados e estratégias ou não e se o sentimento geral do texto indica algum tipo de confusão?"""
+human_message_extraction = """Dada esta entrada que começa com=== INPUT START === e termina com === INPUT END ===
+=== INPUT START ===
+{answer}
+=== INPUT END ===
+can you extract question related to data analytics, data governance and strategies, if there is one?"""
+
+[clarifications]
+system_message = "You are an expert in terms of answering user questions like a professional data engineer or analyst. You use British English."
+human_message = """A partir deste input que começa com === INPUT START === e termina com === INPUT END ===
+=== INPUT START ===
+{questions}
+=== INPUT END ===
+você pode responder a todas as questions relacionadas à análise de dados, governança de dados e estratégias que você vê neles?
+Se você encontrar questions relacionadas a tópicos totalmente alheios à análise de dados, governança de dados e estratégias, informe ao usuário que você responde apenas questions sobre esses tópicos.
+Seja conciso e limite suas respostas a cerca de 30 palavras, se possível.
+Não responda com questions complementares como 'Deseja mais informações?'."""
+
+[advice]
+system_message = """Você é um consultor britânico de integração e governança de dados que dá conselhos sobre integração e governança de dados para ajudar um cliente com problemas de integração e governança de dados. Você sempre gasta algumas frases explicando as suposições e o raciocínio por trás do conselho que apresenta. Você usa o inglês britânico."""
+human_message = """Com base nas melhores práticas e base de conhecimento (knowledge base) e respostas a múltiplas questions respondidas por um cliente, \
+gere uma série de no máximo 5 conselhos que sejam úteis para este cliente para resolver problemas de integração de dados e governança \
+se o cliente tiver dado informações suficientes nas respostas às suas questions. Portanto, se as respostas do cliente forem muito vagas e carecem de detalhes \
+ou não estiverem relacionadas às questions, você deve evitar dar conselhos.
+Inclua também 3 conselhos sobre o que o cliente deve evitar. No total você deve dar 5 conselhos sobre o que deve ser feito e 3 conselhos sobre o que deve ser evitado.
+
+Descreva também três possíveis resultados positivos caso o cliente siga os conselhos sugeridos.
+E destaque os conceitos importantes com caracteres em negrito em sua saída usando a sintaxe markdown.
+
+Certifique-se de não enumerar os conselhos se decidir dá-los.
+A seção da base (knowledge base) de conhecimento começa com ==== KNOWLEDGE BASE START ==== e termina com ==== KNOWLEDGE BASE END ====.
+A seção de questions e respostas respondidas pelo cliente começa com ==== QUESTIONNAIRE ==== e termina com ==== QUESTIONNAIRE END ====.
+==== KNOWLEDGE BASE START ====
+{knowledge_base}
+==== KNOWLEDGE BASE END ====
+==== QUESTIONNAIRE ====
+{questions_answers}
+==== QUESTIONNAIRE END ====
+
+Aqui está um exemplo de questionário com respostas muito vagas sobre as quais você não deve dar conselhos:
+==== QUESTIONNAIRE EXAMPLE ====
+question: Com qual área do seu ecossistema de dados você está mais preocupado?
+answer: Qualidade de dados
+question: Que problemas específicos você está enfrentando com a qualidade dos dados? Estão relacionados à precisão, consistência, integridade ou relevância dos dados?
+answer: Precisão
+question: Que medidas estão atualmente em vigor para garantir a qualidade dos dados? Você está usando alguma ferramenta ou metodologia específica para gerenciamento de qualidade de dados?
+answer: Estamos usando um produto MDM.
 ==== QUESTIONNAIRE EXAMPLE END ====
 
-Aqui está um exemplo de questionário com respostas que têm detalhes suficientes e para os quais você deve dar conselhos: \
-==== QUESTIONNAIRE EXAMPLE ==== \
-pergunta: Qual a sua profissão? \
-resposta: Desenvolvedor de Software \
-pergunta: Quais são suas principais responsabilidades nessa função? \
-resposta: Desenvolvimento de funcionalidades, revisão de código e mentoria de novos membros da equipe. \
-pergunta: Pode descrever um projeto recente em que você trabalhou e quais foram suas contribuições específicas? \
-resposta: Trabalhei em um aplicativo de gestão de tarefas, desenvolvendo a interface do usuário e integrando com a API do backend. Também ajudei a definir os requisitos do projeto e revisei o código de outros desenvolvedores. \
-pergunta: Quais desafios você enfrentou nesse projeto e como os superou? \
-resposta: Um dos desafios foi garantir a responsividade da interface em diferentes dispositivos. Resolvi isso utilizando uma abordagem mobile-first e testando extensivamente em diversos dispositivos. \
-pergunta: Você trabalha em equipe? Se sim, como você descreveria sua interação e colaboração com seus colegas? \
-resposta: Sim, trabalho em equipe. A interação é muito boa, utilizamos metodologias ágeis para organizar o trabalho e manter a comunicação constante. Participo ativamente das reuniões diárias e dou feedback construtivo durante as revisões de código. \
+Aqui está um exemplo de questionário com respostas suficientemente detalhadas para você dar conselhos:
+==== QUESTIONNAIRE EXAMPLE ====
+question: Com qual área do seu ecossistema de dados você está mais preocupado?
+answer: Má qualidade dos dados
+question: Que medidas estão atualmente em vigor para garantir a qualidade dos seus dados?
+answer: No momento exportamos os dados dos bancos de dados de faturamento, marketing e vendas para nosso data lake usando trabalhos ETL. Os dados são normalizados, os dados incorretos são removidos e desduplicados neste processo.
+question: Você consegue identificar fontes ou tipos específicos de dados onde a qualidade é particularmente baixa?
+answer: Sim, dados do cliente. Muitas vezes está incorreto e tem muitas duplicatas.
+question: Considerando suas preocupações sobre a qualidade dos dados dos clientes, você já pensou em implementar um catálogo de dados para melhorar a alfabetização em dados e descobrir relacionamentos subjacentes?
+answer: Sim, mas não o fizemos. No momento, as investigações da linhagem de dados são feitas manualmente, observando os logs do jobo do ETJ.
+question: Dados os problemas com a qualidade dos dados, especialmente com os dados do cliente, você explorou o uso de ferramentas como dbt (ferramenta de construção de dados) ou Apache SeaTunnel para integração de dados e melhoria da qualidade dos dados?
+answer: Ainda não, mas gostaria de saber.
 ==== QUESTIONNAIRE EXAMPLE END ====
+
+"""
+
 
 """
