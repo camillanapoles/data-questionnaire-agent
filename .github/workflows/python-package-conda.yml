@@ -18,10 +18,17 @@ jobs:
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: 1.8.2
+        virtualenvs-create: true
+        virtualenvs-in-project: false
+        virtualenvs-path: ~/.venv
+        installer-parallel: true
     - name: poetry-chainlit
       run: |
-        conda install poetry
+        # conda install poetry
         # stop the build if there are Python syntax errors or undefined names
         poetry install
         poetry add --editable ./wheels/chainlit-0.7.8.10-py3-none-any.whlics
