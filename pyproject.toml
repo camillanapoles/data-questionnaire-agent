@@ -6,7 +6,7 @@ authors = ["Gil Fernandes <gil.fernandes@onepointltd.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 openai = "^1.17.0"
 langchain = "^0.1.15"
 langchain-community = "0.0.32"
