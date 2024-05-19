@@ -1,5 +1,8 @@
 .env
 .env*
+node_modules
+playground_
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
