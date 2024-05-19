@@ -31,7 +31,8 @@ jobs:
         # conda install poetry
         # stop the build if there are Python syntax errors or undefined names
         poetry install
-        poetry add --editable ./wheels/chainlit-0.7.8.10-py3-none-any.whlics
+        poetry add --editable ./wheels/chainlit-0.7.8.10-py3-none-any.whl
+        
         python3 ./data_questionnaire_agent/config.py
         python3 ./data_questionnaire_agent/utils/tracker_db_init.py
         chainlit run ./data_questionnaire_agent/ui/data_questionnaire_chainlit.py --port 8080
